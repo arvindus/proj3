@@ -93,12 +93,15 @@ def get_lenet_model(input_shape=(160,320,3)):
 
 X_train_1, y_train_1 = get_training_data(parent_dir_1)
 X_train_2, y_train_2 = get_training_data(parent_dir_2)
-X_train = np.append(X_train_1, X_train_2)
-y_train = np.append(y_train_1, y_train_2)
+print('old shape 1',X_train_1.shape,y_train_1.shape)
+print('old shape 2',X_train_2.shape,y_train_2.shape)
+X_train = np.concatenate((X_train_1, X_train_2), axis=0)
+y_train = np.concatenate((y_train_1, y_train_2), axis=0)
+print('new shape',X_train.shape,y_train.shape)
 model = get_lenet_model((160,320,3))
 model.compile(loss='mse', optimizer='adam')
 print('compile done...')
-model.fit(X_train, y_train, validation_split=0.2, shuffle=True, nb_epoch=7, batch_size=500)
+model.fit(X_train, y_train, validation_split=0.2, shuffle=True, nb_epoch=7, batch_size=1000)
 print('train done..')
 model.save('model.h5')
 		
