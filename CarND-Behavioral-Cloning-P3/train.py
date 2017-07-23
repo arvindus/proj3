@@ -2,11 +2,12 @@ import csv
 import cv2
 import numpy as np
 
-parent_dir = '../data/'
+parent_dir_1 = '../data_0723_0206/'
+parent_dir_2 = '../data/'
 steering_correction_factor = 0.2
 crop_top = 70
 crop_bottom = 20
-use_multiple_cameras = False
+use_multiple_cameras = True
 
 def augment_data(images, measurements):
 	augmented_images = []
@@ -90,11 +91,14 @@ def get_lenet_model(input_shape=(160,320,3)):
 	model.add(Dense(1))
 	return model
 
-X_train, y_train = get_training_data(parent_dir)
+X_train_1, y_train_1 = get_training_data(parent_dir_1)
+X_train_2, y_train_2 = get_training_data(parent_dir_2)
+X_train = np.append(X_train_1, X_train_2)
+y_train = np.append(y_train_1, y_train_2)
 model = get_lenet_model((160,320,3))
 model.compile(loss='mse', optimizer='adam')
 print('compile done...')
-model.fit(X_train, y_train, validation_split=0.2, shuffle=True, nb_epoch=7, batch_size=300)
+model.fit(X_train, y_train, validation_split=0.2, shuffle=True, nb_epoch=7, batch_size=500)
 print('train done..')
 model.save('model.h5')
 		
