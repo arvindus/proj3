@@ -3,8 +3,9 @@ import cv2
 import numpy as np
 
 # This is the list of directories containing input data
-parent_dir_1 = '../data_0723_0206/'
-parent_dir_2 = '../data/'
+parent_dir_1 = '../../data_0723_0206/'
+parent_dir_2 = '../../data/'
+parent_dir_3 = '../../data_0724_1206/'
 
 # This is added/subtracted from the steering_measurement while using left/right
 # camera images
@@ -97,8 +98,10 @@ def get_lenet_model(input_shape=(160,320,3)):
 # Main code
 X_train_1, y_train_1 = get_training_data(parent_dir_1)
 X_train_2, y_train_2 = get_training_data(parent_dir_2)
-X_train = np.concatenate((X_train_1, X_train_2), axis=0)
-y_train = np.concatenate((y_train_1, y_train_2), axis=0)
+X_train_3, y_train_3 = get_training_data(parent_dir_3)
+X_train = np.concatenate((X_train_1, X_train_2, X_train_3), axis=0)
+y_train = np.concatenate((y_train_1, y_train_2, y_train_3), axis=0)
+print("Number of training images", X_train.shape[0])
 model = get_lenet_model((160,320,3))
 model.compile(loss='mse', optimizer='adam')
 model.fit(X_train, y_train, validation_split=0.2, shuffle=True, nb_epoch=7, batch_size=1000)
