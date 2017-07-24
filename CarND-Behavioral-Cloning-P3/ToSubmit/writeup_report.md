@@ -36,7 +36,8 @@ Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/4
 - model.py : This file contains the python code to read the images to generate the training data, augment the training data, build a training model, and save it in model.h5
 - drive.py : This file is used for driving the car in autonomous mode in the simulator. This is provided [Udacity](https://github.com/udacity/CarND-Behavioral-Cloning-P3/blob/master/drive.py). I did not need to make any changes
 - model.h5 : This is a generated file that has all the information about the trained network.
-- writeup_report.md : This report
+- writeup\_report.md : This report
+- video.mp4 - This video shows the autonomous driving of the car using my trained model
 
 #### 2. Submission includes functional code Using the Udacity provided simulator and my drive.py file; the car can be driven autonomously around the track by executing
 
@@ -48,7 +49,7 @@ Python drive.py model.h5
 
 model.py contains all the code required to train the model. This code has been tested with several data inputs and has found to be robust and usable. Variable names are easily readable and appropriate comments have been added
 
-Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
 #### 1. An appropriate model architecture has been employed
 Lenet model that I used in Project 2 has been used as a starting point. This models a convolutional neural network with 2 layers of 2D convolution.
@@ -76,7 +77,7 @@ I used data from two different sources - one provided by Udacity and one that I 
 I drove only two laps to capture data in order to avoid to over fitting. 
 I also used different styles of driving while collecting data
 
-Model Architecture and Training Strategy
+### Methodology
 
 #### 1. Overview
 
@@ -126,33 +127,49 @@ ________________________________________________________________________________
 ```
 
 
+#### 3. Creation of the Training Set & Training Process
 
-![alt text][image1]
+I used the sample data provided by Udacity. It has 24108 images captured from the center, left, and right cameras. Steering wheel angles for a given image is also provided.
+In addition, I used the driving simulator provided by Udacity to drive the car in the first track in 'training mode'. During the first run, I intentionally kept the car at the very center of the lane.
+In the second run, I allowed myself to make a few mistakes and correct them and recorded my images and steering corrections.
 
-####3. Creation of the Training Set & Training Process
+#### Sample Data
+Here are three examples of images and attributes from my dataset
 
-To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
+1. Left turn
 
-![alt text][image2]
+![Center Image](images_for_writeup/center_2017_07_23_02_18_52_750.jpg)
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
+<table>
+<th>Steering Angle</th><th>Throttle</th><th>Brake</th><th>Speed</th>
+<tr><td>-0.9154633</td><td>0.402409</td><td>0.0</td><td>20.12185</td></tr>
+</table>
 
-![alt text][image3]
-![alt text][image4]
-![alt text][image5]
+2. Straight
 
-Then I repeated this process on track two in order to get more data points.
+![Center Image](images_for_writeup/center_2017_07_23_02_18_41_913.jpg)
 
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
-
-![alt text][image6]
-![alt text][image7]
-
-Etc ....
-
-After the collection process, I had X number of data points. I then preprocessed this data by ...
+<table>
+<th>Steering Angle</th><th>Throttle</th><th>Brake</th><th>Speed</th>
+<tr><td>0.0</td><td>0.0</td><td>0.0</td><td>16.79747</td></tr>
+</table>
 
 
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
+3. Right turn
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+![Center Image](images_for_writeup/center_2017_07_23_02_16_33_750.jpg)
+
+<table>
+<th>Steering Angle</th><th>Throttle</th><th>Brake</th><th>Speed</th>
+<tr><td>0.9509109</td><td>0.1172131</td><td>0.0</td><td>7.866938</td></tr>
+</table>
+
+Following are few numbers related to data collection:
+1. Udacity data - 24108 images
+2. My data from run 1 - 19356 images
+3. My data from run 2 - 8988 images
+4. Total - 52452 images
+
+I also flipped each image horizontally to double the data 
+
+Training was performed using the Lenet CNN model described earlier in the report.
