@@ -172,4 +172,15 @@ Following are few numbers related to data collection:
 
 I also flipped each image horizontally to double the data 
 
-Training was performed using the Lenet CNN model described earlier in the report.
+Training was performed using the Lenet CNN model described earlier in the report with the following parameters:
+1. number of epochs = 7
+2. batch size = 1000
+3. Classifier used = Adam
+4. Validation split = 80/20
+5. Shuffle = True
+
+Following is the trend found in training and validation loss across the 7 epochs
+
+![Center Image](images_for_writeup/center_2017_07_23_02_16_33_750.jpg)
+
+Discussion
