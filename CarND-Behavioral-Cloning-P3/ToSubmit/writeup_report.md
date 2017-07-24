@@ -44,13 +44,13 @@ Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/4
 Python drive.py model.h5
 ```
 
-####3. Submission code is usable and readable
+#### 3. Submission code is usable and readable
 
 model.py contains all the code required to train the model. This code has been tested with several data inputs and has found to be robust and usable. Variable names are easily readable and appropriate comments have been added
 
-###Model Architecture and Training Strategy
+Model Architecture and Training Strategy
 
-####1. An appropriate model architecture has been employed
+#### 1. An appropriate model architecture has been employed
 Lenet model that I used in Project 2 has been used as a starting point. This models a convolutional neural network with 2 layers of 2D convolution.
 Each convolution layer is supported by a relu layer and a max-pooling layer. The convolution layers are followed by a flatten layer, which in turn is followed by three dense layers.
 The model has been enhanced further by adding a lambda layer upfront to normalize the input data by mapping values from 0-255 to values from -0.5 to 0.5
@@ -61,24 +61,24 @@ Adam classifier was used and mean square error was used to represent error. Trai
 
 With my training data and the Lenet model, I found that I was able to achieve very good performance
 
-####2. Attempts to reduce overfitting in the model
+#### 2. Attempts to reduce overfitting in the model
 
 I used data from two different sources - one provided by Udacity and one that I generated using the simulator. I drove only two laps to capture data in order to avoid to over fitting. I also used different styles of driving while collecting data
 
-####3. Model parameter tuning
+#### 3. Model parameter tuning
 
 Learning rate was tuned internally. I tried various batch sizes and found that 1000 is a good number (total number of training data images is around 150000)
 Default parameters in the Lenet model generated good results
 
-####4. Appropriate training data
+#### 4. Appropriate training data
 
 I used data from two different sources - one provided by Udacity and one that I generated using the simulator. 
 I drove only two laps to capture data in order to avoid to over fitting. 
 I also used different styles of driving while collecting data
 
-###Model Architecture and Training Strategy
+Model Architecture and Training Strategy
 
-####1. Overview
+#### 1. Overview
 
 As a first step, I uses a simple neural network model as proposed in lectures. This model was used to build the overall pipeline. 
 Only center images from Udacity provided database with no data augmentation was used. Results were disastrous. Steering angle veered between +25 and -25 degrees and the car went around in circles.
@@ -91,11 +91,11 @@ Following steps were then taken to improve results:
 
 I was now able to get the car to drive safely for more than a single lap. There was one instance when the car touches the shoulder, but the model is able to correct itself.
 
-####2. Final Model Architecture
+#### 2. Final Model Architecture
 
 The final model architecture (get\_Lenet\_model) consisted of a convolution neural network with the following layers and layer sizes.
 This report was obtained using print(model.summary())
-
+```
 ____________________________________________________________________________________________________
 Layer (type)                     Output Shape          Param #     Connected to                     
 ====================================================================================================
@@ -123,6 +123,8 @@ Total params: 787,891
 Trainable params: 787,891
 Non-trainable params: 0
 ____________________________________________________________________________________________________
+```
+
 
 
 ![alt text][image1]
