@@ -181,6 +181,26 @@ Training was performed using the Lenet CNN model described earlier in the report
 
 Following is the trend found in training and validation loss across the 7 epochs
 
-![Center Image](images_for_writeup/center_2017_07_23_02_16_33_750.jpg)
+![Center Image](images_for_writeup/plot.jpg)
 
-Discussion
+### Discussion and Summary
+
+Following are the salient features of this project:
+1. Use of combination of input data - Udacity data + data from my local runs
+2. Images for all three cameras are used. A parametric steering correction factor is used to account for
+the difference in view angles of left/right cameras
+3. All images are flipped horizontally to augment the data further
+4. Each image is cropped further to remove unwanted data (sky, hood of the car etc)
+5. Pixels are normalized between -0.5 and 0.5
+6. Lenet CNN is used
+7. Adam optimizer is used to train  the model
+
+Limitations:
+1. The design does not use generators. I was able to run the design on a powerful machine with a 
+large RAM. So I was able to handle all data being loaded into memory at once
+2. I did not use data from the second track
+3. I did not try a deeper CNN as I was able to obtain very good performance with Lenet CNN. I focused on data collection and augmentation
+
+Summary:
+Using my data and the Lenet model, I was able to drive the car autonomously around the first track once and have provided the trained model and output video with this submission.
+
